@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Read Recipes</title>
+    
+    <style>
+      /* Navbar Styling */
+      nav {
+        background-color: #343a40;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white !important;
+        font-weight: bold;
+        margin-right: 15px;
+        text-transform: uppercase;
+      }
+
+      /* Recipe Card Styling */
+      .output {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 30px;
+        transition: transform 0.3s ease;
+      }
+
+      .output:hover {
+        transform: scale(1.05);
+      }
+
+      .output img {
+        border-radius: 10px;
+        max-width: 100px;
+      }
+
+      .output .row {
+        align-items: center;
+      }
+
+      .output .col {
+        margin-bottom: 10px;
+      }
+
+      /* Heading Styling */
+      h1 {
+        margin: 40px 0;
+        text-align: center;
+        font-weight: bold;
+        color: #343a40;
+      }
+
+      /* Container Styling */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Recipe Manager</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/read">Read</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/update">Update</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/delete">Delete</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Heading -->
+    <div class="container">
+      <h1>Recipe Collection</h1>
+
+      <!-- Recipes -->
+      {% for recipe in data %}
+      <div class="output">
+        <div class="row">
+          <div class="col-md-3">
+            <b>{{ recipe.name }}</b>
+          </div>
+          <div class="col-md-3">
+            <b>Ingredients:</b> {{ recipe.ingredients }}
+          </div>
+          <div class="col-md-3">
+            <b>Instructions:</b> {{ recipe.instructions }}
+          </div>
+          <div class="col-md-3">
+            {% if recipe.image %}
+            <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+            {% else %}
+            <p>No image available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
